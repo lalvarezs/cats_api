@@ -1,6 +1,10 @@
 from cats.models import Cat
 
 class CatSerializer: 
+    def get_all_cats(self, request): 
+        cat_list = Cat.objects.filter(user=request.user).values()
+        return cat_list, 200
+
     def validate_fields(self, request):
         field_list = ['name', 'color', 'birthdate']
         for field in field_list:

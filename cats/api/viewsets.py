@@ -10,7 +10,8 @@ class CatList(APIView):
     serializer = CatSerializer()
     
     def get(self, request): 
-        pass
+        response, status = self.serializer.get_all_cats(request)
+        return Response(response,status)
 
     def post(self, request, format=None):
         response,status = self.serializer.validate_fields(request)
